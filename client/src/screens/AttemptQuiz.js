@@ -4,7 +4,7 @@ import LoadingScreen from "./LoadingScreen";
 import AttemptedModal from "./AttemptedModal";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
+import CountDownTimer from "../components/CountDownTimer";
 const AttemptQuiz = ({ match }) => {
   const { quizCode } = useParams();
   const [questions, setQuestions] = useState([]);
@@ -20,6 +20,10 @@ const AttemptQuiz = ({ match }) => {
       const quizData = res.data;
       console.log(quizData);
       setQuestions(quizData.data);
+      const attempted = quizData.data.filter((question) => {
+        return -1;
+      });
+      setAttemptedQuestions(attempted);
       setQuizTitle(quizData.title);
       setLoading(false);
     };
@@ -33,10 +37,6 @@ const AttemptQuiz = ({ match }) => {
   };
 
   const submitQuiz = async () => {
-    if (attemptedQuestions.length != questions.length) {
-      alert("Please answer all the questions");
-      return;
-    }
     const res = await axios.post("/API/quizzes/submit", {
       quizid: quizCode,
       responses: attemptedQuestions,
@@ -93,6 +93,17 @@ const AttemptQuiz = ({ match }) => {
   else
     return (
       <div id="main-body">
+        <CountDownTimer
+          minutes={20}
+          handleExpire={submitQuiz}
+          style={{
+            position: "fixed",
+            right: 10,
+            bottom: 20,
+            fontWeight: "bold",
+            fontSize: "1.5rem",
+          }}
+        />
         <div id="create-quiz-body">
           <div className="quiz-header">
             <h2>{quizTitle}</h2>

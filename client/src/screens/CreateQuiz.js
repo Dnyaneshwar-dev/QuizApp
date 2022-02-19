@@ -67,6 +67,7 @@ const CreateQuiz = ({
       console.log(questions);
       const res = await axios.post("/API/quizzes/create", {
         author: "danny",
+        title: title,
         questions: questions,
       });
 

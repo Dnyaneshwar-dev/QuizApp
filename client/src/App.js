@@ -18,6 +18,7 @@ import Responses from "./screens/Responses";
 import LoginScreen from "./screens/LoginScreen";
 import AuthContext from "./auth/context";
 import getUser from "./auth/getUser";
+import CountDownTimer from "./components/CountDownTimer";
 
 const App = () => {
   const [user, setUser] = useState(getUser());
@@ -63,6 +64,7 @@ const App = () => {
           </Route>
 
           <Route path="/responses/:quizCode" component={Responses} />
+          <Route path="/timer" component={CountDownTimer} />
           <Route component={NotFoundPage} />
         </Switch>
       </>

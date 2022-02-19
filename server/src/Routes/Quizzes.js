@@ -123,7 +123,7 @@ Router.post("/submit", async (req, res) => {
 // Create Quiz
 Router.post("/create", async (req, res) => {
   const quizid = uuid();
-  const { author, questions } = req.body;
+  const { title, author, questions } = req.body;
   if (!quizid || !author || !questions) {
     res.send({ error: "Incomplete Parameters" });
   }
@@ -150,6 +150,7 @@ Router.post("/create", async (req, res) => {
 
   const result = await DB.quizzes.create({
     data: {
+      title: title,
       quizid: quizid,
       author: author,
       questions: {
@@ -161,14 +162,8 @@ Router.post("/create", async (req, res) => {
   res.send({ ok: true, data: result });
 });
 
+Router.post("/edit", (req, res) => {});
 
-
-Router.post("/edit", (req, res) => {
-  
-});
-
-Router.post("/responses", (req, res) => {
-  
-});
+Router.post("/responses", (req, res) => {});
 
 module.exports = Router;

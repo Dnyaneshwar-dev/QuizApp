@@ -19,6 +19,7 @@ import LoginScreen from "./screens/LoginScreen";
 import AuthContext from "./auth/context";
 import getUser from "./auth/getUser";
 import CountDownTimer from "./components/CountDownTimer";
+import SignUpScreen from "./screens/SignUpScreen";
 
 const App = () => {
   const [user, setUser] = useState(getUser());
@@ -55,6 +56,16 @@ const App = () => {
           <Route path="/join-quiz">
             <AuthContext.Provider value={store}>
               {user ? <JoinQuiz /> : <LoginScreen />}
+            </AuthContext.Provider>
+          </Route>
+          <Route path="/login">
+            <AuthContext.Provider value={store}>
+              {user ? <UserDashboard /> : <LoginScreen />}
+            </AuthContext.Provider>
+          </Route>
+          <Route path="/signup">
+            <AuthContext.Provider value={store}>
+              {user ? <UserDashboard /> : <SignUpScreen />}
             </AuthContext.Provider>
           </Route>
           <Route path="/attempt-quiz/:quizCode">

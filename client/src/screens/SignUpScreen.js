@@ -5,10 +5,8 @@ import { Col, Container, Row } from "react-bootstrap";
 import axios from "axios";
 import useAuth from "../auth/useAuth";
 import { Redirect } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 
-const LoginScreen = () => {
-  const history = useHistory();
+const SignUpScreen = () => {
   const { logIn } = useAuth();
   const [loading, setLoading] = useState(false);
   const [redirect, setRedirect] = useState(false);
@@ -16,7 +14,7 @@ const LoginScreen = () => {
   const [password, setPassword] = useState("");
 
   const handleSubmit = async () => {
-    const res = await axios.post("/API/users/signin", {
+    const res = await axios.post("/API/users/signup", {
       username: username,
       password: password,
     });
@@ -47,7 +45,7 @@ const LoginScreen = () => {
               xs={12}
               lg={6}
             >
-              <label className="login-label">Log In</label>
+              <label className="login-label">Sign Up</label>
 
               <div
                 class="form-group d-flex justify-content-center"
@@ -55,9 +53,9 @@ const LoginScreen = () => {
                   padding: 10,
                 }}
               >
-                <label for="exampleInputEmail1">Email address</label>
+                <label for="exampleInputEmail1">Username</label>
                 <input
-                  type="text"
+                  type="email"
                   class="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
@@ -96,20 +94,7 @@ const LoginScreen = () => {
                   }}
                   onClick={() => handleSubmit()}
                 >
-                  SUBMIT
-                </button>
-                <button
-                  style={{
-                    marginTop: 10,
-                    width: "80%",
-                    height: 40,
-                    backgroundColor: "blue",
-                    borderRadius: "10px",
-                    color: "white",
-                  }}
-                  onClick={() => history.push("/signup")}
-                >
-                  SIGN UP
+                  Submit
                 </button>
               </div>
             </Col>
@@ -120,4 +105,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default SignUpScreen;

@@ -100,7 +100,7 @@ const CreateQuiz = ({
             autocomplete="off"
           />
         </div>
-        <div className="controls">
+        {/* <div className="controls">
           <AddQuestionModal addQuestionHandle={addQuestionHandle} />
           <div className="switch">
             <Switch
@@ -111,7 +111,7 @@ const CreateQuiz = ({
             />
             <h4>{access ? "Open" : "Close"}</h4>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="questionTable">
         <QuestionsTable

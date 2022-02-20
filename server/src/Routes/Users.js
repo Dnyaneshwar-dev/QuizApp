@@ -51,6 +51,31 @@ Router.post("/signin", async (req, res) => {
   }
 });
 
+Router.post("/signup", async (req, res) => {
+  // sign up
+  const { username, password } = req.body;
+  if (!username || !password) {
+    res.send({ ok: false, error: "Incomplete Parameters" });
+  }
+  try {
+    const result = await DB.users.findFirst({ where: { username: username } });
+    if (result) {
+      res.send({ ok: false, error: "User Already Exists" });
+    } else {
+      const token = jwt.sign({ name: username }, "SECRET_KEY");
+      const newUser = await DB.users.create({
+        data: {
+          username: username,
+          password: password,
+        },
+      });
+      res.send({ ok: true, data: newUser, token: token });
+    }
+  } catch (error) {
+    console.log(error);
+    res.send({ ok: false, error: error });
+  }
+});
 // Get user Data
 Router.get("/:uid", (req, res) => {});
 

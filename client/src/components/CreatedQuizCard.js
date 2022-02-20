@@ -1,26 +1,26 @@
-import { IconButton } from '@material-ui/core'
-import { EditRounded } from '@material-ui/icons'
-import React from 'react'
-import { Link } from 'react-router-dom'
-import './QuizCard.css'
+import { IconButton } from "@material-ui/core";
+import { EditRounded } from "@material-ui/icons";
+import React from "react";
+import { Link } from "react-router-dom";
+import "./QuizCard.css";
 
 const CreatedQuizCard = ({
-	title,
-	responses,
-	code,
-	questions,
-	isOpen,
-	index,
-	setEditQuiz,
+  title,
+  responses,
+  code,
+  questions,
+  isOpen,
+  index,
+  setEditQuiz,
 }) => {
-	return (
-		<div className="quiz-card">
-			<div>
-				<h1 className="created-quiz-title">{title}</h1>
-				<p className="card-code">Code : {code}</p>
-			</div>
-			<div id="horizontal-line"></div>
-			<div id="row">
+  return (
+    <div className="quiz-card">
+      <div>
+        <h1 className="created-quiz-title">{title}</h1>
+        <p className="card-code">Code : {code}</p>
+      </div>
+      <div id="horizontal-line"></div>
+      {/* <div id="row">
 				<div id="responses">
 					<Link
 						to={`/responses/${code}`}
@@ -37,9 +37,9 @@ const CreatedQuizCard = ({
 				<IconButton onClick={() => setEditQuiz([index])} color="secondary">
 					<EditRounded color="secondary"/>
 				</IconButton>
-			</div>
-		</div>
-	)
-}
+			</div> */}
+    </div>
+  );
+};
 
-export default CreatedQuizCard
+export default CreatedQuizCard;

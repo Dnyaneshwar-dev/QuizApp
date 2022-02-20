@@ -162,6 +162,22 @@ Router.post("/create", async (req, res) => {
   res.send({ ok: true, data: result });
 });
 
+Router.post("/user", async (req, res) => {
+  const { author } = req.body;
+  if (!author) {
+    res.send({ ok: false, error: "Incomplete Parameters" });
+  }
+  try {
+    const result = await DB.quizzes.findMany({
+      where: { author: author },
+    });
+
+    res.send({ ok: true, data: result });
+  } catch (error) {
+    res.send({ ok: false, error: error });
+  }
+});
+
 Router.post("/edit", (req, res) => {});
 
 Router.post("/responses", (req, res) => {});

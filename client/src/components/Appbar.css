@@ -8,7 +8,19 @@
   color: rgb(255, 255, 255);
   padding: 0px 5px;
   padding-right: 15px;
-  justify-content: space-between;
+  justify-content: flex-end;
+  background-color: var(--secondary);
+  box-shadow: black 0px 1px 4px;
+}
+.appbarmain {
+  z-index: 5;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  color: rgb(255, 255, 255);
+  padding: 0px 5px;
+  padding-right: 15px;
+  justify-content: center;
   background-color: var(--secondary);
   box-shadow: black 0px 1px 4px;
 }
@@ -55,6 +67,7 @@
 
 .icon {
   margin-right: 10px;
+  font-size: large;
 }
 
 .appbar-user p {

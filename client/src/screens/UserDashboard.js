@@ -5,6 +5,7 @@ import JoinedQuizCard from "../components/JoinedQuizCard";
 import LoadingScreen from "./LoadingScreen";
 import CreateQuiz from "./CreateQuiz";
 import useAuth from "../auth/useAuth";
+import axios from "axios";
 
 const UserDashboard = () => {
   const { user } = useAuth();
@@ -19,9 +20,11 @@ const UserDashboard = () => {
       return;
     }
     const fetchQuizData = async () => {
-      // const quizData = await results.json();
-      // if (quizData.createdQuiz) setCreatedQuizzes(quizData.createdQuiz);
-      // if (quizData.attemptedQuiz) setAttemptedQuizzes(quizData.attemptedQuiz);
+      const res = await axios.post("/API/quizzes/user", { author: user.name });
+      console.log(res.data);
+      if (res.data.ok == true) {
+        setCreatedQuizzes(res.data.data);
+      }
       setLoading(false);
     };
     if (user) fetchQuizData();
@@ -90,10 +93,10 @@ const UserDashboard = () => {
               index={key}
               setEditQuiz={setEditQuiz}
               title={quiz.title}
-              code={quiz._id}
-              responses={quiz.responses}
-              questions={quiz.questions.length}
-              isOpen={quiz.isOpen}
+              code={quiz.quizid}
+              responses={0}
+              questions={0}
+              isOpen={false}
             />
           ))}
         </div>

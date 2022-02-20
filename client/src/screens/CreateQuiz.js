@@ -6,7 +6,7 @@ import QuestionsTable from "../components/QuestionsTable";
 import { Switch } from "@material-ui/core";
 import LoadingScreen from "./LoadingScreen";
 import axios from "axios";
-
+import useAuth from "../auth/useAuth";
 const CreateQuiz = ({
   quizTitle,
   questions,
@@ -14,6 +14,7 @@ const CreateQuiz = ({
   isOpen,
   editQuizHandle,
 }) => {
+  const { user } = useAuth();
   const [questionArray, setQuestionArray] = useState([]);
   const [title, setTitle] = useState("");
   const [access, setAccesss] = useState(true);
@@ -66,7 +67,7 @@ const CreateQuiz = ({
       });
       console.log(questions);
       const res = await axios.post("/API/quizzes/create", {
-        author: "danny",
+        author: user.name,
         title: title,
         questions: questions,
       });
@@ -100,18 +101,9 @@ const CreateQuiz = ({
             autocomplete="off"
           />
         </div>
-        {/* <div className="controls">
+        <div className="controls">
           <AddQuestionModal addQuestionHandle={addQuestionHandle} />
-          <div className="switch">
-            <Switch
-              checked={access}
-              onChange={(e) => setAccesss(e.target.checked)}
-              color="secondary"
-              name="access"
-            />
-            <h4>{access ? "Open" : "Close"}</h4>
-          </div>
-        </div> */}
+        </div>
       </div>
       <div className="questionTable">
         <QuestionsTable

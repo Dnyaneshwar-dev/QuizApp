@@ -21,17 +21,7 @@
   text-align: center;
   font-size: larger;
   border-radius: 50px;
-  transition: width 0.8s ease-in-out;
-  border: 2px solid #404A5E;
-}
-
-#q-code:focus {
-  width: 500px;
-  outline: none;
-  text-align: center;
-  font-weight: 500;
-  border-color: var(--accent-pink);
-  color: var(--secondary);
+  border: 2px solid #404a5e;
 }
 
 .join-button {
@@ -55,7 +45,6 @@
   color: #fff;
   cursor: pointer;
   text-decoration: none;
-
 }
 
 .logo-name {
@@ -63,7 +52,7 @@
   font-weight: 200;
 }
 
-.logo-name b{
+.logo-name b {
   font-size: 7rem;
   font-weight: 600;
 }

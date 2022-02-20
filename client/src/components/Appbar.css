@@ -1,22 +1,22 @@
 @import "./colors.css";
 
 .appbar {
-  z-index: 9;
+  z-index: 5;
   position: fixed;
   width: 100%;
   display: flex;
-  color: white;
+  color: rgb(255, 255, 255);
   padding: 0px 5px;
   padding-right: 15px;
   justify-content: space-between;
   background-color: var(--secondary);
-  box-shadow: black 0px 1px 6px;
+  box-shadow: black 0px 1px 4px;
 }
 
 .slider {
-  z-index: 9;
+  z-index: 7;
   background-color: var(--secondary);
-  height: 70px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;

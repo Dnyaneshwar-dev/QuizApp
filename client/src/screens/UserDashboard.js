@@ -27,7 +27,19 @@ const UserDashboard = () => {
       }
       setLoading(false);
     };
+    console.log("HI");
     if (user) fetchQuizData();
+    const fetchAttempted = async () => {
+      const res = await axios.post("/API/quizzes/attempted", {
+        user: user.name,
+      });
+      console.log(res.data);
+      if (res.data.ok == true) {
+        setAttemptedQuizzes(res.data.data);
+      }
+      setLoading(false);
+    };
+    if (user) fetchAttempted();
   }, [user]);
 
   const editQuizHandle = async (title, questions, isOpen) => {
@@ -112,8 +124,8 @@ const UserDashboard = () => {
             <JoinedQuizCard
               key={key}
               title={quiz.title}
-              score={quiz.responses[0].score}
-              questions={quiz.totalQuestions}
+              score={quiz.score}
+              questions={quiz.total}
             />
           ))}
         </div>

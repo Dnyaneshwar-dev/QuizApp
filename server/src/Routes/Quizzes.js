@@ -5,13 +5,25 @@ const { v4: uuid } = require("uuid");
 
 // Get Quiz Data
 Router.post("/join", async (req, res) => {
-  const { quizid } = req.body;
+  const { quizid, user } = req.body;
   console.log(quizid);
-  if (!quizid) {
+  if (!quizid || !user) {
     res.send({ error: "Incomplete Parameters" });
   }
 
   try {
+    var attempted = await DB.attempted.findFirst({
+      where: {
+        quizid: quizid,
+        user: user,
+      },
+    });
+
+    if (attempted) {
+      attempted = true;
+    } else {
+      attempted = false;
+    }
     const result = await DB.quizzes.findFirst({
       where: {
         quizid: quizid,
@@ -53,7 +65,11 @@ Router.post("/join", async (req, res) => {
       });
     }
 
-    res.send({ title: result.title, data: questionsData });
+    res.send({
+      title: result.title,
+      data: questionsData,
+      attempted: attempted,
+    });
   } catch (error) {
     console.log(error);
     res.send(error);
@@ -160,6 +176,35 @@ Router.post("/create", async (req, res) => {
   });
 
   res.send({ ok: true, data: result });
+});
+
+Router.post("/attempt", async (req, res) => {
+  const data = req.body;
+  try {
+    const res = await DB.attempted.create({
+      data: data,
+    });
+    res.send({ ok: true, data: res });
+  } catch (error) {
+    console.log(error);
+    res.send({ ok: false, data: error });
+  }
+});
+
+Router.post("/attempted", async (req, res) => {
+  const { user } = req.body;
+
+  try {
+    const result = await DB.attempted.findMany({
+      where: {
+        user: user,
+      },
+    });
+    res.send({ ok: true, data: result });
+  } catch (error) {
+    console.log(error);
+    res.send({ ok: false, data: error });
+  }
 });
 
 Router.post("/user", async (req, res) => {

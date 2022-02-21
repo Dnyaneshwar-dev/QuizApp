@@ -63,13 +63,30 @@
   align-items: center;
   padding: 5px;
   margin: 0 30px;
+  text-decoration: none;
 }
 
 .icon {
   margin-right: 10px;
   font-size: large;
+  text-decoration: none;
 }
 
 .appbar-user p {
   font-size: 40;
+}
+
+.signout-button {
+  padding: 2;
+  background-color: var(--secondary);
+  border: none;
+  color: aliceblue;
+  cursor: pointer;
+  box-shadow: none;
+  background: none;
+  align-content: "center";
+  align-items: "center";
+  justify-content: "center";
+  width: "40px";
+  height: "40px";
 }

@@ -38,3 +38,12 @@ model Option {
   Question   Question? @relation(fields: [questionId], references: [id])
   questionId Int?
 }
+
+model Attempted {
+  id     Int    @id @default(autoincrement())
+  quizid String
+  user   String
+  title  String
+  score  Int
+  total  Int
+}

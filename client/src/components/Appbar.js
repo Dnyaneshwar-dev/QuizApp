@@ -41,7 +41,7 @@ const Appbar = () => {
           <Icon className="icon">
             <Dashboard />
           </Icon>
-          <Link to="/dashboard">
+          <Link to="/dashboard" style={{ textDecoration: "none" }}>
             <p
               style={{
                 color: "white",
@@ -57,7 +57,7 @@ const Appbar = () => {
           <Icon className="icon">
             <MeetingRoom />
           </Icon>
-          <Link to="/join-quiz">
+          <Link to="/join-quiz" style={{ textDecoration: "none" }}>
             <p
               style={{
                 color: "white",
@@ -72,7 +72,7 @@ const Appbar = () => {
           <Icon className="icon">
             <CreateNewFolder />
           </Icon>
-          <Link to="/create-quiz">
+          <Link to="/create-quiz" style={{ textDecoration: "none" }}>
             <p
               style={{
                 color: "white",
@@ -93,20 +93,7 @@ const Appbar = () => {
         </Col>
         {user ? (
           <Col className="appbar-user">
-            <button
-              style={{
-                padding: 2,
-                backgroundColor: "blue",
-                color: "white",
-                alignContent: "center",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: "20%",
-                width: "40px",
-                height: "40px",
-              }}
-              onClick={() => logOut()}
-            >
+            <button className="signout-button" onClick={() => logOut()}>
               <Icon>
                 <ExitToApp />
               </Icon>

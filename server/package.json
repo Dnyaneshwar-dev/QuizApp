@@ -2,7 +2,7 @@
   "name": "mcq-app-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "back.js",
+  "main": "",
   "scripts": {
     "start": "node src/server",
     "test": "echo \"Error: no test specified\" && exit 1"
